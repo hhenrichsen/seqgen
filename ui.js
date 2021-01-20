@@ -97,9 +97,9 @@ app.component('filter-display', {
                 </component>
             </form>
             <div v-if="changed">
-                <button class="text-sm text-gray-500 text-center inline-block w-full" @click="update">Apply Changes</button>
+                <button class="text-sm text-blue-500 text-center inline-block w-full" @click="update">Apply Changes</button>
             </div>
-            <button class="text-sm text-gray-500 text-center inline-block w-full" @click="remove(filter.id)">Remove Filter</button>
+            <button class="text-sm text-blue-500 text-center inline-block w-full" @click="remove(filter.id)">Remove Filter</button>
         </div>
     `
 })
