@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeqGen | Hunter Henrichsen</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gray-100 sm:py-12">
+    <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-lg">
+        <h1 class="font-bold text-center text-2xl mb-5">SeqGen</h1>
+        <div id="app" class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+            <div id="generator" class="mt-5 p-5">
+                <h2 class="font-semibold text-md text-gray-600 pb-5 block text-center">Generator Settings</h2>
+                <label class="font-semibold text-sm text-gray-600 pb-1 block">Outcomes</label>
+                <input v-model="outcomes" placeholder="a, b, c" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
+                <label class="font-semibold text-sm text-gray-600 pb-1 block">Count</label>
+                <input v-model="length" type="number" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full">
+                <button @click="generate"
+                    class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block h-12"><span
+                        class="inline-block mr-2">Generate</span></button>
+            </div>
+            <div id="filters" class="mt-5 p-5">
+                <h2 class="font-semibold text-md text-gray-600 mb-3 block text-center">Filters</h2>
+                <div class="filters divide-y divide-gray-100">
+                    <filter-display class="pb-3" v-for="filter of filters" v-bind:filter="filter"
+                        v-bind:apply="applyFilter" v-bind:remove="removeFilter" v-bind:outcomes="outcomeOptions">
+                    </filter-display>
+                </div>
+                <button @click="addFilter"
+                    class="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block h-12">
+                    <span class="inline-block mr-2">Add Filter</span>
+                </button>
+            </div>
+            <div v-if="output" class="mt-5 p-5">
+                <h2 class="font-semibold text-md text-gray-600 pb-5 block text-center">Results</h2>
+                <div v-for="res of output">
+                    {{ res.join(" ") }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3.0.5"></script>
+    <script type="module">
+        import { app } from "./ui.js";
+    </script>
+</body>
+
+</html>

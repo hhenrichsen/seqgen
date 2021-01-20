@@ -1,0 +1,18 @@
+<div>
+    <h3>Count Less Than<button @click="remove(id)">x</button></h3>
+    <form @change="setDirty">
+        <label>Outcome</label>
+        <select v-model="type">
+            <option value="countlt">Count Less Than</option>
+            <option value="countgt">Count Greater Than</option>
+            <option value="counteq">Count Equal To</option>
+        </select>
+        <label>Outcome</label>
+        <select v-model="outcome">
+            <option v-for="outcome of outcomes">{{outcome}}</option>
+        </select>
+        <label>Count</label><input v-model.number="count" type="number"></form>
+    <div v-if="changed">
+        <button @click="update">Apply Changes</button>
+    </div>
+</div>
